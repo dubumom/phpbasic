@@ -6,8 +6,14 @@
   <title>request</title>
 </head>
 <body>
+  <h1>회원가입 완료</h1>
+
   <?php
-    print_r($_POST);
+  
+    // print_r($_POST);
+
+    echo "{$_POST['username']}님 {$_POST['useremail']} 주소로 회원가입을 완료했습니다.";
+
   ?>
 </body>
 </html>
