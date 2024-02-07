@@ -1,0 +1,81 @@
+<?php echo
+
+변수명 하나만 출력할때는
+<?=
+
+
+* 사용자 몰래 넘길 때 input type = "hidden"
+
+* isset($var) : 값이 있는지 없는지 확인
+---------------------------------------------------
+※ form
+
+filter_input(
+ INPUT_GET - 1번째 자리
+ limit - 2번째 자리
+ FILTER_VALIDATE_INT -문자 숫자 유효성 검사, 3번째 자리
+): mixed
+
+---------------------------------------------------
+※ cookie
+
+cookie : 클라이언트 - 만기 (내컴퓨터)
+session : 서버 - 만기 (로그인,로그아웃 : 세션은 삭제됨)
+local storage : 클라이언트 - 만기 없음 (내컴퓨터)
+
+쿠키생성
+setcookie("쿠키이름", 값, 만기시간);  /* 1s */
+ex. setcookie("TestCookie", $value, time()+3600);
+
+쿠키확인
+echo $_COOKIE["쿠키이름"];
+ex. echo $_COOKIE["TestCookie"];
+
+쿠키삭제
+setcookie("쿠키이름", 값, 과거);  /* 1s */
+ex. setcookie("TestCookie", "", time() - 3600);
+
+---------------------------------------------------
+※ session
+
+세션 시작
+session_start();
+
+세션 값 생성
+$_SESSION['세션이름'] = '값';
+
+세션 값 출력
+$_SESSION['세션이름']
+
+세션 값 삭제
+1. 등록된 모든 세션 변수 해지
+session_unset(); 
+2. 세션 아이디 삭제
+session_destroy();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
