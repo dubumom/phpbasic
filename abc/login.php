@@ -1,10 +1,27 @@
 <?php
   $title = 'login';
   include('inc/header.php');
+  include('config.php');
   include('inc/function.php');
+
+  if(user_is_authenticated()){ // 이미 관리자로 로그인한 유저를 관리자 페이지로 이동.
+    redirect('adm/index.php');
+    die();
+  }
 
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+    $password = $_POST['password'];
+
+    #관리자 인증
+    if(authenticate_user($email,$password)){
+      $_SESSION['email'] = $email;
+      redirect('./adm/index.php');
+    }else {
+      $status = '관리자 정보를 다시 확인하세요.';
+    }
+
 
     if($email == false){
       $status = '이메일 형식으로 입력하세요!';
@@ -34,8 +51,8 @@
     <input type="email" name="email" id="email">
   </p>
   <p>
-    <label for="name">name</label>
-    <input type="name" name="name" id="name">
+    <label for="password">password</label>
+    <input type="password" name="password" id="password">
   </p>
 
   <button>login</button>
